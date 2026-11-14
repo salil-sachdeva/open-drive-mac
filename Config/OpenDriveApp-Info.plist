@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleDisplayName</key>
+    <string>Open Drive</string>
+    <key>CFBundleExecutable</key>
+    <string>OpenDriveApp</string>
+    <key>CFBundleIdentifier</key>
+    <string>org.opendrive.mac</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>Open Drive</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>0.1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>15.4</string>
+    <key>LSUIElement</key>
+    <true/>
+    <key>NSServices</key>
+    <array>
+        <dict>
+            <key>NSMenuItem</key>
+            <dict>
+                <key>default</key>
+                <string>Upload to Open Drive</string>
+            </dict>
+            <key>NSMessage</key>
+            <string>uploadToOpenDrive</string>
+            <key>NSPortName</key>
+            <string>Open Drive</string>
+            <key>NSRequiredContext</key>
+            <dict/>
+            <key>NSSendFileTypes</key>
+            <array>
+                <string>public.item</string>
+            </array>
+            <key>NSKeyEquivalent</key>
+            <dict>
+                <key>default</key>
+                <string>C</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
