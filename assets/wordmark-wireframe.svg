@@ -1,0 +1,101 @@
+<svg viewBox="-8 -8 846 172" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="opendrive wireframe wordmark">
+  <defs>
+    <pattern id="od-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-opacity="0.14" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g>
+    <path d="M 0 28 H 84 V 124 H 0 Z M 22 50 V 102 H 62 V 50 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M 102 28 H 186 V 124 H 124 V 156 H 102 Z M 124 50 V 102 H 164 V 50 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M 204 28 H 288 V 86 H 226 V 102 H 288 V 124 H 204 Z M 226 50 V 66 H 266 V 50 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M 306 28 H 390 V 124 H 368 V 50 H 328 V 124 H 306 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M 408 28 H 470 V 0 H 492 V 124 H 408 Z M 430 50 V 102 H 470 V 50 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M 510 28 H 584 V 50 H 532 V 124 H 510 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M 602 0 H 626 V 20 H 602 Z M 602 28 H 626 V 124 H 602 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M 644 28 H 668 L 686 94 L 704 28 H 728 L 700 124 H 672 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M 746 28 H 830 V 86 H 768 V 102 H 830 V 124 H 746 Z M 768 50 V 66 H 808 V 50 Z" fill="url(#od-hatch)" fill-rule="evenodd" stroke="currentColor" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+  </g>
+  <g>
+    <rect x="-2" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="82" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="82" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="-2" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="20" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="60" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="60" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="20" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="100" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="184" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="184" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="122" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="122" y="154" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="100" y="154" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="122" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="162" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="162" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="122" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="202" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="286" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="286" y="84" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="224" y="84" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="224" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="286" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="286" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="202" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="224" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="264" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="264" y="64" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="224" y="64" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="304" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="388" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="388" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="366" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="366" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="326" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="326" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="304" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="406" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="468" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="468" y="-2" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="490" y="-2" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="490" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="406" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="428" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="468" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="468" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="428" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="508" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="582" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="582" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="530" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="530" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="508" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="600" y="-2" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="624" y="-2" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="624" y="18" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="600" y="18" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="600" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="624" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="624" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="600" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="642" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="666" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="684" y="92" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="702" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="726" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="698" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="670" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="744" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="828" y="26" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="828" y="84" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="766" y="84" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="766" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="828" y="100" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="828" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="744" y="122" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="766" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="806" y="48" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="806" y="64" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="766" y="64" width="4" height="4" fill="currentColor" fill-opacity="0.32"/>
+  </g>
+</svg>
