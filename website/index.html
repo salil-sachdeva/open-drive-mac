@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>open drive — google drive in finder, zero bytes on your mac</title>
+  <meta name="description" content="mount google drive directly in macos finder and terminal. stream 4 MiB chunks on demand with zero local ssd usage, accurate cloud free space, and optional ode1 zero-knowledge encryption.">
+  <meta property="og:title" content="open drive — google drive in finder, zero bytes on your mac">
+  <meta property="og:description" content="native swift 6 cloud drive for macos. direct finder favorites mount, real multi-terabyte cloud quota, 4 MiB range streaming, and optional ode1 aes-256-gcm encryption.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://salil-sachdeva.github.io/open-drive-mac/">
+  <meta property="og:image" content="https://salil-sachdeva.github.io/open-drive-mac/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://salil-sachdeva.github.io/open-drive-mac/assets/og-image.png">
+  <link rel="canonical" href="https://salil-sachdeva.github.io/open-drive-mac/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Floating Centered Pill Navigation -->
+  <nav class="nav" aria-label="Main">
+    <a href="#top" class="nav-home on" data-nav-link="top">open drive</a>
+    <a href="#how" data-nav-link="how">how it works</a>
+    <a href="#features" data-nav-link="features">features</a>
+    <a href="#why" data-nav-link="why">why</a>
+    <a href="#open-source" data-nav-link="open-source">open source</a>
+    <a href="#faq" data-nav-link="faq">faq</a>
+    <a class="nav-account" href="https://github.com/salil-sachdeva/open-drive-mac" target="_blank" rel="noopener noreferrer">github ↗</a>
+  </nav>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero wrap">
+      <h1 class="hero-title">
+        <span class="hero-meet">meet</span>
+        <span class="hero-tile" aria-hidden="true">
+          <svg class="logo" width="42" height="42" viewBox="0 0 64 64" fill="none">
+            <rect x="4" y="4" width="56" height="56" rx="14" fill="currentColor"/>
+            <path d="M 24.5 13 L 39.5 13 C 42.0 13 44 15.0 44 17.5 L 44 33.5 C 44 36.0 42.0 38 39.5 38 L 24.5 38 C 22.0 38 20 36.0 20 33.5 L 20 17.5 C 20 15.0 22.0 13 24.5 13 Z" fill="#ffffff" fill-opacity="0.45"/>
+            <path d="M 14 23 C 16.0 23 17.5 24.5 17.5 26.5 L 17.5 39.5 C 17.5 41.5 19.0 43 21 43 L 43 43 C 45.0 43 46.5 41.5 46.5 39.5 L 46.5 26.5 C 46.5 24.5 48.0 23 50 23 C 52.0 23 53.5 24.5 53.5 26.5 L 53.5 46.5 C 53.5 50.6 50.1 54 46 54 L 18 54 C 13.9 54 10.5 50.6 10.5 46.5 L 10.5 26.5 C 10.5 24.5 12.0 23 14 23 Z M 26.5 47 L 37.5 47 C 38.6 47 39.5 47.9 39.5 49 C 39.5 50.1 38.6 51 37.5 51 L 26.5 51 C 25.4 51 24.5 50.1 24.5 49 C 24.5 47.9 25.4 47 26.5 47 Z" fill="#ffffff" fill-rule="evenodd"/>
+          </svg>
+        </span>
+        <span><em>open drive</em>.</span>
+      </h1>
+      <p class="lede">
+        <strong>google drive</strong> in finder, <mark>without</mark> filling up your mac.
+      </p>
+      <div class="hero-actions">
+        <a class="pill pill-dark" href="https://github.com/salil-sachdeva/open-drive-mac/releases/latest/download/OpenDrive.dmg">
+          <svg class="apple-logo" viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
+            <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/>
+          </svg>
+          download for mac
+        </a>
+      </div>
+      <p class="fine">free &amp; open source (mit) · needs macos 15.4+</p>
+      <p class="fine fine-lock">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <rect x="3" y="7" width="10" height="7.5" rx="2"></rect>
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"></path>
+        </svg>
+        optional ode1 end-to-end encryption
+      </p>
+      <div class="lifetime stacked">
+        <span class="lt-stack" aria-hidden="true">
+          <i>SF6</i>
+          <i>NFS</i>
+          <i>FSK</i>
+          <i>GCM</i>
+          <i>SQL</i>
+          <i>MIT</i>
+        </span>
+        <span class="lt-line in">engineered natively in <b>swift 6 for macos</b> ✨</span>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE FINDER STORY STAGE -->
+    <section class="story" id="finder-story" data-step="0" aria-label="How open drive looks in finder">
+      <div class="story-sticky wrap">
+        <div class="stage">
+          <div class="orbit" aria-hidden="true">
+            <span class="orbit-ring"></span>
+            <span class="orb orb-1">
+              <svg class="f-folder" viewBox="0 0 64 52">
+                <path d="M4 6a3 3 0 0 1 3-3h15l5 5h30a3 3 0 0 1 3 3v6H4z" fill="#68b5ff"></path>
+                <rect x="2" y="12" width="60" height="38" rx="4" fill="#3a9bff"></rect>
+              </svg>
+            </span>
+            <span class="orb orb-2">
+              <svg class="f-doc" viewBox="0 0 48 60">
+                <path d="M6 2h26l12 12v42a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#d6d6da" stroke-width="1.2"></path>
+                <path d="M32 2v10a2 2 0 0 0 2 2h10" fill="#f1f1f3" stroke="#d6d6da" stroke-width="1.2"></path>
+                <text x="24" y="48" text-anchor="middle" font-size="8" font-weight="700" fill="#1d1d1f">MOV</text>
+              </svg>
+            </span>
+            <span class="orb orb-3">
+              <svg class="f-doc" viewBox="0 0 48 60">
+                <path d="M6 2h26l12 12v42a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#d6d6da" stroke-width="1.2"></path>
+                <path d="M32 2v10a2 2 0 0 0 2 2h10" fill="#f1f1f3" stroke="#d6d6da" stroke-width="1.2"></path>
+                <text x="24" y="48" text-anchor="middle" font-size="8" font-weight="700" fill="#18703a">ODE1</text>
+              </svg>
+            </span>
+            <span class="orb orb-4">
+              <svg class="f-doc" viewBox="0 0 48 60">
+                <path d="M6 2h26l12 12v42a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#d6d6da" stroke-width="1.2"></path>
+                <path d="M32 2v10a2 2 0 0 0 2 2h10" fill="#f1f1f3" stroke="#d6d6da" stroke-width="1.2"></path>
+                <text x="24" y="48" text-anchor="middle" font-size="8" font-weight="700" fill="#6e6e73">KEY</text>
+              </svg>
+            </span>
+          </div>
+
+          <div class="frame">
+            <div class="f-scene" id="finder-scene" role="img" aria-label="Finder showing the Open Drive mount in Favorites. Get Info shows a 48.2 GB video takes Zero bytes on disk with 5.37 TB available.">
+              <div class="f-window">
+                <aside class="f-side">
+                  <span class="f-lights f-lights-finder" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <p class="f-side-head">Favorites</p>
+                  <p class="f-side-item">
+                    <svg class="f-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                    Recents
+                  </p>
+                  <p class="f-side-item">
+                    <svg class="f-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg>
+                    Applications
+                  </p>
+                  <p class="f-side-item">
+                    <svg class="f-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/></svg>
+                    Desktop
+                  </p>
+                  <p class="f-side-item">
+                    <svg class="f-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/></svg>
+                    Documents
+                  </p>
+                  <p class="f-side-item active">
+                    <span class="f-side-logo">
+                      <svg width="15" height="15" viewBox="0 0 64 64" fill="currentColor">
+                        <rect x="4" y="4" width="56" height="56" rx="14" fill="currentColor"/>
+                        <path d="M 24.5 14 L 39.5 14 C 42 14 44 16 44 18.5 L 44 33 C 44 35.5 42 37.5 39.5 37.5 L 24.5 37.5 C 22 37.5 20 35.5 20 33 L 20 18.5 C 20 16 22 14 24.5 14 Z" fill="#fff"/>
+                      </svg>
+                    </span>
+                    <span id="finder-drive-label">Open Drive</span>
+                  </p>
+                  <p class="f-side-item">
+                    <svg class="f-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+                    Downloads
+                  </p>
+
+                  <p class="f-side-head">Locations</p>
+                  <p class="f-side-item">
+                    <svg class="f-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6" width="16" height="12" rx="2"/><circle cx="8" cy="12" r="1"/></svg>
+                    Macintosh HD
+                  </p>
+                  <p class="f-side-item">
+                    <svg class="f-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 16a4 4 0 0 1 0-8 5 5 0 0 1 9.8-1A3.5 3.5 0 0 1 17 14H6z"/></svg>
+                    <span>Open Drive</span>
+                    <span class="f-eject">⏏</span>
+                  </p>
+                </aside>
+
+                <div class="f-main">
+                  <div class="f-toolbar" aria-hidden="true">
+                    <span class="f-capsule">‹ &nbsp; ›</span>
+                    <b class="f-title">Open Drive — Personal Drive</b>
+                    <span class="f-capsule f-push">5.37 TB available</span>
+                    <span class="f-capsule round">⌕</span>
+                  </div>
+
+                  <div class="f-grid">
+                    <div class="f-item">
+                      <div class="f-icon folder">
+                        <svg class="f-folder" viewBox="0 0 64 52"><path d="M4 6a3 3 0 0 1 3-3h15l5 5h30a3 3 0 0 1 3 3v6H4z" fill="#aeaeb2"></path><rect x="2" y="12" width="60" height="38" rx="4" fill="#c7c7cc"></rect></svg>
+                      </div>
+                      <span class="f-name">Personal Drive</span>
+                      <span class="f-size">Whole Drive</span>
+                    </div>
+                    <div class="f-item">
+                      <div class="f-icon folder">
+                        <svg class="f-folder" viewBox="0 0 64 52"><path d="M4 6a3 3 0 0 1 3-3h15l5 5h30a3 3 0 0 1 3 3v6H4z" fill="#8e8e93"></path><rect x="2" y="12" width="60" height="38" rx="4" fill="#aeaeb2"></rect></svg>
+                      </div>
+                      <span class="f-name">Private Vault</span>
+                      <span class="f-size">ODE1 Locked</span>
+                    </div>
+                    <div class="f-item">
+                      <div class="f-icon folder">
+                        <svg class="f-folder" viewBox="0 0 64 52"><path d="M4 6a3 3 0 0 1 3-3h15l5 5h30a3 3 0 0 1 3 3v6H4z" fill="#aeaeb2"></path><rect x="2" y="12" width="60" height="38" rx="4" fill="#c7c7cc"></rect></svg>
+                      </div>
+                      <span class="f-name">Client Releases</span>
+                      <span class="f-size">Folder</span>
+                    </div>
+                    <div class="f-item">
+                      <div class="f-icon folder">
+                        <svg class="f-folder" viewBox="0 0 64 52"><path d="M4 6a3 3 0 0 1 3-3h15l5 5h30a3 3 0 0 1 3 3v6H4z" fill="#aeaeb2"></path><rect x="2" y="12" width="60" height="38" rx="4" fill="#c7c7cc"></rect></svg>
+                      </div>
+                      <span class="f-name">RAW Backups</span>
+                      <span class="f-size">Folder</span>
+                    </div>
+                    <div class="f-item target" id="finder-target-item">
+                      <div class="f-icon thumb wide">
+                        <div class="f-film-thumb">
+                          <span>4K 60fps</span>
+                        </div>
+                      </div>
+                      <span class="f-name">Demo-Walkthrough-4K.mov</span>
+                      <span class="f-size">48.2 GB</span>
+                    </div>
+                    <div class="f-item">
+                      <div class="f-icon doc">
+                        <svg class="f-doc" viewBox="0 0 48 60"><path d="M6 2h26l12 12v42a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#d6d6da" stroke-width="1.2"></path><path d="M32 2v10a2 2 0 0 0 2 2h10" fill="#f1f1f3" stroke="#d6d6da" stroke-width="1.2"></path><path d="M13 22h22M13 27h22M13 32h16" stroke="#c8c8cd" stroke-width="2" stroke-linecap="round"></path><text x="24" y="50" text-anchor="middle" font-size="7" font-weight="600" fill="#9a9aa0">KEY</text></svg>
+                      </div>
+                      <span class="f-name">Quarterly-Deck.key</span>
+                      <span class="f-size">48.2 MB</span>
+                    </div>
+                    <div class="f-item">
+                      <div class="f-icon doc">
+                        <svg class="f-doc" viewBox="0 0 48 60"><path d="M6 2h26l12 12v42a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#d6d6da" stroke-width="1.2"></path><path d="M32 2v10a2 2 0 0 0 2 2h10" fill="#f1f1f3" stroke="#d6d6da" stroke-width="1.2"></path><path d="M13 22h22M13 27h22M13 32h16" stroke="#c8c8cd" stroke-width="2" stroke-linecap="round"></path><text x="24" y="50" text-anchor="middle" font-size="7" font-weight="600" fill="#9a9aa0">PDF</text></svg>
+                      </div>
+                      <span class="f-name">Financials-2026.pdf</span>
+                      <span class="f-size">12.6 MB</span>
+                    </div>
+                    <div class="f-item">
+                      <div class="f-icon doc">
+                        <svg class="f-doc" viewBox="0 0 48 60"><path d="M6 2h26l12 12v42a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#d6d6da" stroke-width="1.2"></path><path d="M32 2v10a2 2 0 0 0 2 2h10" fill="#f1f1f3" stroke="#d6d6da" stroke-width="1.2"></path><path d="M13 22h22M13 27h22M13 32h16" stroke="#c8c8cd" stroke-width="2" stroke-linecap="round"></path><text x="24" y="50" text-anchor="middle" font-size="7" font-weight="600" fill="#9a9aa0">MD</text></svg>
+                      </div>
+                      <span class="f-name">Launch Checklist.md</span>
+                      <span class="f-size">25 KB</span>
+                    </div>
+                    <div class="f-item">
+                      <div class="f-icon doc">
+                        <svg class="f-doc" viewBox="0 0 48 60"><path d="M6 2h26l12 12v42a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#d6d6da" stroke-width="1.2"></path><path d="M32 2v10a2 2 0 0 0 2 2h10" fill="#f1f1f3" stroke="#d6d6da" stroke-width="1.2"></path><path d="M13 22h22M13 27h22M13 32h16" stroke="#c8c8cd" stroke-width="2" stroke-linecap="round"></path><text x="24" y="50" text-anchor="middle" font-size="7" font-weight="600" fill="#18703a">SH</text></svg>
+                      </div>
+                      <span class="f-name">deploy-preview.sh</span>
+                      <span class="f-size">4 KB · +x</span>
+                    </div>
+                    <div class="f-item">
+                      <div class="f-icon doc">
+                        <svg class="f-doc" viewBox="0 0 48 60"><path d="M6 2h26l12 12v42a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#d6d6da" stroke-width="1.2"></path><path d="M32 2v10a2 2 0 0 0 2 2h10" fill="#f1f1f3" stroke="#d6d6da" stroke-width="1.2"></path><path d="M13 22h22M13 27h22M13 32h16" stroke="#c8c8cd" stroke-width="2" stroke-linecap="round"></path><text x="24" y="50" text-anchor="middle" font-size="7" font-weight="600" fill="#9a9aa0">PDF</text></svg>
+                      </div>
+                      <span class="f-name">Tax Return 2025.pdf</span>
+                      <span class="f-size">3.7 MB</span>
+                    </div>
+                  </div>
+
+                  <div class="f-path" aria-hidden="true">
+                    <span>~/Library/OpenDrive/Open Drive</span>
+                    <span>›</span>
+                    <span>Personal Drive</span>
+                    <span class="f-path-quota">10 items · 5.37 TB available in Google Drive</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Right-Click Context Menu -->
+              <div class="f-menu" aria-hidden="true">
+                <p>Open</p>
+                <p>Open With <span>›</span></p>
+                <i></i>
+                <p>Pin Offline on This Mac</p>
+                <p class="f-menu-get-info">Get Info <span>⌘I</span></p>
+                <p>Rename</p>
+                <p>Copy Open Drive Path <span>⌘⇧C</span></p>
+                <p>Quick Look</p>
+                <i></i>
+                <div class="f-menu-tags"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
+                <p>Tags…</p>
+              </div>
+
+              <!-- Step 3: Get Info Inspector -->
+              <div class="f-info" aria-hidden="true">
+                <div class="f-info-bar">
+                  <span class="f-lights"><i></i><i></i><i></i></span>
+                  <b>Demo-Walkthrough-4K.mov Info</b>
+                </div>
+                <div class="f-info-head">
+                  <div class="f-film-mini">4K</div>
+                  <div>
+                    <b>Demo-Walkthrough-4K.mov</b>
+                    <span>Modified: Today, 10:42 AM</span>
+                  </div>
+                  <b class="f-info-size">48.2 GB</b>
+                </div>
+                <p class="f-info-tags">Add Tags…</p>
+                <p class="f-info-section open"><span>›</span> General:</p>
+                <dl>
+                  <dt>Kind:</dt><dd>QuickTime movie (Streamed 4 MiB chunks)</dd>
+                  <dt>Size:</dt><dd>48,213,574,021 bytes (<mark>Zero bytes</mark> on disk)</dd>
+                  <dt>Volume:</dt><dd><mark>5.37 TB available</mark> (Google Drive)</dd>
+                  <dt>Where:</dt><dd>~/Library/OpenDrive/Open Drive › Personal Drive</dd>
+                  <dt>POSIX:</dt><dd>-rw-r--r-- · NFSv3 Loopback</dd>
+                </dl>
+                <p class="f-info-section"><span>›</span> More Info:</p>
+                <p class="f-info-section"><span>›</span> Name &amp; Extension:</p>
+              </div>
+
+              <svg class="f-cursor" viewBox="0 0 18 24" aria-hidden="true">
+                <path d="M2 2v17l4.2-4.1 3.1 6.6 2.6-1.2-3.1-6.5h6.2z" fill="#000" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Interactive step switcher pills -->
+          <div class="story-steps" role="tablist" aria-label="Finder walkthrough steps">
+            <button type="button" class="story-step-btn on" data-story-step="0" role="tab" aria-selected="true">1. pinned in finder favorites</button>
+            <button type="button" class="story-step-btn" data-story-step="1" role="tab" aria-selected="false">2. select 48.2 GB video</button>
+            <button type="button" class="story-step-btn" data-story-step="2" role="tab" aria-selected="false">3. right-click → get info</button>
+            <button type="button" class="story-step-btn" data-story-step="3" role="tab" aria-selected="false">4. zero bytes on disk · 5.37 TB free</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILT FOR EVERY KIND OF WORK (REAL MACOS SCREENSHOTS & GIFS) -->
+    <section id="work" class="section wrap centered">
+      <h2>built for <em>every</em> mac workflow.</h2>
+      <p class="body">native swiftui app, global search palette, and zero-knowledge vault.</p>
+
+      <div class="ek">
+        <div class="ek-chips" role="tablist" aria-label="Open Drive macOS views">
+          <button type="button" role="tab" aria-selected="true" class="ek-on" data-ek-tab="finder-demo">finder &amp; rename gif</button>
+          <button type="button" role="tab" aria-selected="false" data-ek-tab="overview">overview</button>
+          <button type="button" role="tab" aria-selected="false" data-ek-tab="palette">search ⌃⌥f</button>
+          <button type="button" role="tab" aria-selected="false" data-ek-tab="uploads">uploads</button>
+          <button type="button" role="tab" aria-selected="false" data-ek-tab="offline">offline cache</button>
+          <button type="button" role="tab" aria-selected="false" data-ek-tab="vault">ode1 vault</button>
+          <button type="button" role="tab" aria-selected="false" data-ek-tab="settings">settings</button>
+          <button type="button" role="tab" aria-selected="false" data-ek-tab="app-tour">app tour gif</button>
+        </div>
+
+        <div class="ek-stage-card">
+          <button type="button" id="ek-zoom-btn" class="ek-zoom-btn" aria-label="Expand current macOS screenshot">
+            <img
+              id="ek-stage-img"
+              src="assets/screenshots/finder-demo-light.gif"
+              width="960"
+              height="600"
+              alt="Open Drive in macOS Finder showing Favorites pin, Get Info reporting Zero bytes on disk with 5.37 TB free space, POSIX Terminal symlinks, and live drive rename"
+            >
+          </button>
+          <div class="ek-caption-bar">
+            <p id="ek-caption-text">direct finder favorites pin with zero bytes on disk in get info, live 5.37 TB cloud quota, posix terminal symlinks, and instant volume rename.</p>
+            <div class="ek-caption-actions">
+              <button type="button" id="ek-theme-btn" class="ek-mini-pill" aria-label="Toggle screenshot appearance">dark preview</button>
+              <button type="button" id="ek-expand-btn" class="ek-mini-pill">expand ↗</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- #HOW: 4 EDITORIAL NOTES -->
+    <section id="how" class="notes wrap">
+      <div class="note">
+        <p class="note-head"><span class="badge">1</span> what it is</p>
+        <p class="note-lead">your google drive in finder, with terabytes of cloud space.</p>
+        <p>it pins right in finder favorites and mounts as a native virtual disk. your files look and open like normal, in finder, terminal, and the apps you already use.</p>
+        <p>but they live in google drive and stream in 4 MiB chunks, so a 50 GB film takes no space on your mac.</p>
+        <p>turn on the optional ode1 vault and your files and filenames are end-to-end encrypted on your mac before they ever leave it.</p>
+      </div>
+
+      <div class="note">
+        <p class="note-head"><span class="badge">2</span> why it’s different</p>
+        <p>traditional sync apps copy whole folders onto your ssd or trap your drive inside clunky localhost folders that report your local disk’s free space instead of your cloud quota.</p>
+        <p>open drive runs a user-space loopback nfsv3 and webdav engine over rfc 6761 <code>*.localhost</code>. finder shows your actual multi-terabyte google drive space, while a two-tier hot/cold lru cache coalesces 4 MiB byte-range reads on the fly.</p>
+        <div class="facts">
+          <div>
+            <b>0 bytes</b>
+            <span>used on your mac for remote files</span>
+          </div>
+          <div>
+            <b>4 MiB</b>
+            <span>on-demand streaming chunks</span>
+          </div>
+          <div>
+            <b>5+ TB</b>
+            <span>real google drive space in finder</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <p class="note-head"><span class="badge">3</span> how it works</p>
+        <ol class="steps">
+          <li>install open drive (or build from source in swift 6). it lives quietly in your menu bar.</li>
+          <li>sign in with google oauth 2.0 pkce over loopback (127.0.0.1). tokens stay sealed in macos keychain.</li>
+          <li>open your drive straight from finder favorites, rename it live, or unlock an encrypted ode1 vault.</li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <p class="note-head"><span class="badge">4</span> what you get</p>
+        <ul class="feature-list">
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            pins directly in finder favorites — opens in one click
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            reports your real google drive free space in finder &amp; get info
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            rename your mounted drive or individual account folders live
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            optional ode1 (aes-256-gcm) chunk + odnames filename encryption
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            printable 24-word us-letter recovery key pdf generated on device
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            full posix support: symlinks (ln -s), chmod +x, git, and terminal scripts
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            find any file across every connected account in milliseconds with ⌃⌥f
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            pin important files offline in the bounded local cache
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            non-blocking background uploads with 4 MiB resumable http put
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            auto-pauses uploads on personal hotspot and metered networks
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            diskarbitration eject guard protects active transfers from accidental unmount
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            connect multiple whole-drive or dedicated open drive folders simultaneously
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            100% open source swift 6 — zero kernel extensions, zero telemetry
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROSE CALLOUT -->
+    <section class="prose wrap">
+      <h2>your files in the cloud.<br><span class="word-pill">zero</span> on your mac.</h2>
+      <p>open drive behaves like a local disk. open a 48 GB video or scrub to the middle and it starts playing right away, because rangeReader only fetches the 4 MiB slice your app asks for.</p>
+      <p>nothing duplicates onto your startup disk, and noisy finder <code>._*</code> appledouble files stay isolated in memory so your google drive stays clean.</p>
+      <p class="flow">
+        <span>mount</span>
+        <i aria-hidden="true">→</i>
+        <span>stream 4 MiB</span>
+        <i aria-hidden="true">→</i>
+        <span>open instantly</span>
+      </p>
+    </section>
+
+    <!-- #FEATURES: 6 BENTO MOMENTS -->
+    <section id="features" class="section wrap centered">
+      <h2>made for <em>big</em> files.</h2>
+      <div class="moments">
+        <!-- Moment 1: Menu Bar Drop -->
+        <figure class="moment">
+          <div class="m-photo forest-1" aria-hidden="true">
+            <div class="mb">
+              <div class="mb-bar">
+                <span class="mb-apple"></span><b>Finder</b><span>File</span><span>Edit</span><span>View</span>
+                <span class="mb-right"><span class="mb-icon on">☁︎</span><span>Mon 10:42 AM</span></span>
+              </div>
+              <div class="mb-panel">
+                <div class="dp-spot">
+                  <b>Release to upload</b>
+                  <small>Personal Drive · Root Folder</small>
+                </div>
+                <p class="dp-head">Connected Drives</p>
+                <p class="mb-row">☁︎ Personal Drive <span>1.66 TB</span></p>
+                <p class="mb-row">🔒 Private Vault <span>81.7 GB</span></p>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            <b>drop files to upload</b>
+            <span>drag files straight into open drive or save directly from any mac app.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Moment 2: Accurate Cloud Space -->
+        <figure class="moment">
+          <div class="m-photo forest-2" aria-hidden="true">
+            <div class="win w-split">
+              <aside class="w-side">
+                <span class="f-lights"><i></i><i></i><i></i></span>
+                <p class="w-search">⌕ Search</p>
+                <p class="w-side-item">Overview</p>
+                <p class="w-side-item on">Storage Quota</p>
+                <p class="w-side-item">Accounts (2)</p>
+                <p class="w-side-item">Offline Cache</p>
+              </aside>
+              <div class="w-main">
+                <div class="w-toolbar"><b>Google Drive Quota</b></div>
+                <div class="ss-group">
+                  <p class="ss-row"><b>Open Drive</b><span>5.37 TB available</span></p>
+                  <div class="ss-bar"><i style="width:18%"></i><i style="width:8%"></i></div>
+                  <p class="ss-legend"><span>Personal Drive</span><span>Private Vault</span><span>Free</span></p>
+                </div>
+                <div class="ss-group ss-list">
+                  <div class="ss-item">
+                    <span class="ss-two"><b>Macintosh HD</b><small>Startup SSD</small></span>
+                    <span class="ss-size">37.4 GB free</span>
+                  </div>
+                  <div class="ss-item">
+                    <span class="ss-two"><b>Open Drive</b><small>5.37 TB in Google Drive</small></span>
+                    <span class="ss-size saving-text">Zero KB local</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            <b>real cloud space in finder</b>
+            <span>reports your actual multi-terabyte google drive quota instead of local ssd space.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Moment 3: 4 MiB Range Streaming -->
+        <figure class="moment">
+          <div class="m-photo forest-3" aria-hidden="true">
+            <div class="win w-video">
+              <div class="w-video-canvas">
+                <span class="w-video-badge">4 MiB RANGE STREAM · HOT/COLD LRU</span>
+              </div>
+              <div class="w-video-bar">
+                <span class="f-lights"><i></i><i></i><i></i></span>
+                <b>Demo-Walkthrough-4K.mov</b>
+              </div>
+              <div class="qt">
+                <div class="qt-buttons">
+                  <span>🔊</span>
+                  <span class="qt-mid">⏮ &nbsp; ▶ &nbsp; ⏭</span>
+                  <span class="qt-end">⧉</span>
+                </div>
+                <div class="qt-time">
+                  <span>12:04</span>
+                  <span class="qt-scrub"><i></i></span>
+                  <span>-1:36:16</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            <b>watch &amp; scrub right away</b>
+            <span>coalescing 4 MiB byte-range requests with sequential read-ahead prefetch.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Moment 4: Global Search ⌃⌥F & Offline Pinning -->
+        <figure class="moment">
+          <div class="m-photo forest-4" aria-hidden="true">
+            <div class="mb">
+              <div class="mb-bar">
+                <span class="mb-apple"></span><b>Finder</b><span>File</span><span>Edit</span><span>View</span>
+                <span class="mb-right"><span class="mb-icon on">⌃⌥F</span><span>Mon 10:42 AM</span></span>
+              </div>
+              <div class="mb-panel mb-panel-wide">
+                <div class="mb-status">
+                  <span class="mb-status-icon">⌕</span>
+                  <span>
+                    <b>Search all Google Drives (⌃⌥F)</b>
+                    <small>SQLite WAL tree index · sub-10ms</small>
+                  </span>
+                </div>
+                <i class="mb-sep"></i>
+                <p class="mb-row">📌 Launch Checklist.md <span>Pinned</span></p>
+                <p class="mb-row">📌 Demo Walk-Through.mov <span>184 MB</span></p>
+                <p class="mb-row">🔒 Tax Return 2025.pdf <span>Vault</span></p>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            <b>search with ⌃⌥f &amp; pin offline</b>
+            <span>find any file across every account in milliseconds or keep files pinned locally.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Moment 5: ODE1 Zero-Knowledge Vault -->
+        <figure class="moment">
+          <div class="m-photo forest-5" aria-hidden="true">
+            <div class="win w-editor">
+              <div class="w-video-bar">
+                <span class="f-lights"><i></i><i></i><i></i></span>
+                <b>ODE1 Zero-Knowledge Vault</b>
+              </div>
+              <div class="vault-card-preview">
+                <div class="vault-pill-row">
+                  <span class="vault-chip">ODE1 72 B Header</span>
+                  <span class="vault-chip">AES-256-GCM</span>
+                  <span class="vault-chip">ODNames-v1</span>
+                </div>
+                <div class="vault-code-box">
+                  <code>magic: "ODE1" (0x4F 0x44 0x45 0x31)</code>
+                  <code>kdf:   PBKDF2-HMAC-SHA256 (210,000 ops)</code>
+                  <code>chunk: 4 MiB + 16 B GCM tag</code>
+                  <code>meta:  .od-meta + 24-word recovery PDF</code>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            <b>zero-knowledge ode1 vault</b>
+            <span>seal chunks and filenames with aes-256-gcm and export a 24-word recovery pdf.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Moment 6: Hotspot Guard & Resumable Uploads -->
+        <figure class="moment">
+          <div class="m-photo forest-6" aria-hidden="true">
+            <div class="mb">
+              <div class="mb-bar">
+                <span class="mb-apple"></span><b>Finder</b><span>File</span><span>Edit</span><span>View</span>
+                <span class="mb-right"><span class="mb-icon on">↑</span><span>Mon 10:42 AM</span></span>
+              </div>
+              <div class="mb-panel mb-panel-wide">
+                <div class="mb-status">
+                  <span class="mb-status-icon">↑</span>
+                  <span>
+                    <b>Uploading 2 files…</b>
+                    <small>4 MiB resumable PUT · Hotspot guard</small>
+                  </span>
+                </div>
+                <div class="mb-progress"><i></i></div>
+                <i class="mb-sep"></i>
+                <p class="mb-row">↑ Quarterly-Deck.key <span>16.8 / 48.2 MB</span></p>
+                <p class="mb-row">⏸ Financials-2026.pdf <span>Hotspot paused</span></p>
+                <p class="mb-row">✓ deploy-preview.sh <span>chmod +x</span></p>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            <b>hotspot-aware background uploads</b>
+            <span>saves return immediately in finder while nwpathmonitor pauses metered transfers.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- #WHY: SOUND FAMILIAR MACBOOK + COMPARISON TABLE -->
+    <section id="why" class="section wrap centered pains-wrap">
+      <h2>sound <em>familiar</em>?</h2>
+      <p class="body">if you use cloud storage on a mac, you’ve hit these walls.</p>
+
+      <div class="macbook" role="img" aria-label="A MacBook screen showing: Your disk is almost full; Finder reporting 37 GB available instead of 5 TB; and waiting 58 minutes to download a full video.">
+        <div class="mb-lid">
+          <span class="mb-notch" aria-hidden="true"></span>
+          <div class="mb-screen">
+            <div class="mb-menubar">
+              <span></span><b>Finder</b><span>File</span><span>Edit</span><span>View</span>
+              <span class="mb-clock">Mon 10:42 AM</span>
+            </div>
+            <div class="scr-notif">
+              <span class="scr-notif-app" aria-hidden="true">⚠️</span>
+              <span>
+                <b>Your disk is almost full</b>
+                <span>Startup disk has only 37.4 GB remaining.</span>
+              </span>
+              <small>now</small>
+            </div>
+            <div class="scr-prog">
+              <p><b>Syncing “Client-Master-4K.mov”</b></p>
+              <span class="scr-prog-bar"><i></i></span>
+              <small>3.2 GB of 48.2 GB · About 58 minutes left</small>
+            </div>
+            <div class="scr-alert">
+              <b>Not Enough Disk Space</b>
+              <span>Finder thinks your 5 TB cloud drive only has 37 GB free.</span>
+              <span class="scr-alert-btns"><i>Cancel</i><i class="del">Manage…</i></span>
+            </div>
+          </div>
+        </div>
+        <div class="mb-base" aria-hidden="true"></div>
+      </div>
+
+      <div class="pain-causes">
+        <p class="pain-causes-head">why it happens with legacy tools</p>
+        <p class="pain-cause"><span class="pain-tag">Sync Apps</span>they mirror gigabytes onto your local mac ssd before you can work.</p>
+        <p class="pain-cause"><span class="pain-tag">FileProvider</span>finder displays your startup disk’s free space instead of your actual 5 TB google drive quota.</p>
+        <p class="pain-cause"><span class="pain-tag">FUSE / Kexts</span>require kernel extensions or weaken macos system security.</p>
+      </div>
+
+      <div class="pains-fix">
+        <svg class="logo" width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="#ffffff"/>
+          <path d="M 24.5 13 L 39.5 13 C 42.0 13 44 15.0 44 17.5 L 44 33.5 C 44 36.0 42.0 38 39.5 38 L 24.5 38 C 22.0 38 20 36.0 20 33.5 L 20 17.5 C 20 15.0 22.0 13 24.5 13 Z" fill="#000000" fill-opacity="0.38"/>
+          <path d="M 14 23 C 16.0 23 17.5 24.5 17.5 26.5 L 17.5 39.5 C 17.5 41.5 19.0 43 21 43 L 43 43 C 45.0 43 46.5 41.5 46.5 39.5 L 46.5 26.5 C 46.5 24.5 48.0 23 50 23 C 52.0 23 53.5 24.5 53.5 26.5 L 53.5 46.5 C 53.5 50.6 50.1 54 46 54 L 18 54 C 13.9 54 10.5 50.6 10.5 46.5 L 10.5 26.5 C 10.5 24.5 12.0 23 14 23 Z" fill="#000000"/>
+        </svg>
+        <p>
+          <b>with open drive, never again.</b>
+          <span>4 MiB streaming, 0 bytes on disk, and your real 5+ TB quota in finder.</span>
+        </p>
+        <a class="pill pains-fix-go" href="https://github.com/salil-sachdeva/open-drive-mac/releases/latest/download/OpenDrive.dmg">download for mac</a>
+      </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="section wrap centered">
+      <h2>why <em>open drive</em>?</h2>
+      <p class="body">purpose-built in native swift 6 for macos finder and terminal.</p>
+
+      <div class="cmp" role="table" aria-label="open drive compared with google drive desktop, icloud drive, and rclone/fuse">
+        <div class="cmp-row cmp-head" role="row">
+          <span role="columnheader"></span>
+          <span role="columnheader" class="cmp-us"><span class="cmp-brand">open drive</span></span>
+          <span role="columnheader"><span class="cmp-brand">google drive app</span></span>
+          <span role="columnheader"><span class="cmp-brand">icloud drive</span></span>
+          <span role="columnheader"><span class="cmp-brand">rclone + fuse</span></span>
+        </div>
+
+        <div class="cmp-row" role="row">
+          <span role="rowheader" class="cmp-label">streams 4 MiB chunks without downloading whole file</span>
+          <span role="cell" class="cmp-us"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-no" aria-label="no"></span></span>
+          <span role="cell"><span class="cmp-yes" aria-label="yes">✓</span></span>
+        </div>
+
+        <div class="cmp-row" role="row">
+          <span role="rowheader" class="cmp-label">reports actual google drive free space in finder</span>
+          <span role="cell" class="cmp-us"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-text">local ssd space</span></span>
+          <span role="cell"><span class="cmp-text">local ssd space</span></span>
+          <span role="cell"><span class="cmp-yes" aria-label="yes">✓</span></span>
+        </div>
+
+        <div class="cmp-row" role="row">
+          <span role="rowheader" class="cmp-label">direct finder favorites pin &amp; live volume rename</span>
+          <span role="cell" class="cmp-us"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-no" aria-label="no"></span></span>
+          <span role="cell"><span class="cmp-no" aria-label="no"></span></span>
+          <span role="cell"><span class="cmp-no" aria-label="no"></span></span>
+        </div>
+
+        <div class="cmp-row" role="row">
+          <span role="rowheader" class="cmp-label">client-side ode1 zero-knowledge vault + 24-word pdf</span>
+          <span role="cell" class="cmp-us"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-no" aria-label="no"></span></span>
+          <span role="cell"><span class="cmp-text">adp optional</span></span>
+          <span role="cell"><span class="cmp-text">cli crypt only</span></span>
+        </div>
+
+        <div class="cmp-row" role="row">
+          <span role="rowheader" class="cmp-label">works without kernel extensions (kexts) or macfuse</span>
+          <span role="cell" class="cmp-us"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-no" aria-label="no"></span></span>
+        </div>
+
+        <div class="cmp-row" role="row">
+          <span role="rowheader" class="cmp-label">100% open source (mit) &amp; bring your own oauth</span>
+          <span role="cell" class="cmp-us"><span class="cmp-yes" aria-label="yes">✓</span></span>
+          <span role="cell"><span class="cmp-no" aria-label="no"></span></span>
+          <span role="cell"><span class="cmp-no" aria-label="no"></span></span>
+          <span role="cell"><span class="cmp-yes" aria-label="yes">✓</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- #STORY: APPLE NOTES FOUNDER WINDOW -->
+    <section id="story" class="section wrap centered">
+      <h2>why i <em>built</em> open drive.</h2>
+      <article class="fn-window">
+        <header class="fn-bar">
+          <span class="fn-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="fn-title"><span class="fn-icon" aria-hidden="true"></span>notes</span>
+        </header>
+        <div class="fn-body">
+          <p>hey, i’m salil 👋. i have 5 TB of google drive storage, but my macbook air ssd had only 37 GB left.</p>
+          <p>every cloud mounter i tried either mirrored folders onto my local disk, required closed-source subscriptions, or mounted through file provider where finder still complained that only 37 GB was available. 🛠️</p>
+          <p>worse, i wanted real posix behavior in terminal — <code>chmod +x</code>, symlinks, git, and zero <code>._*</code> appledouble clutter — plus client-side encryption where google only ever stores locked ciphertext.</p>
+          <p>so i engineered open drive natively in swift 6: <mark>your google drive pins straight into finder favorites, reports your real multi-terabyte cloud space, streams 4 MiB chunks on demand, and optionally seals everything with ode1 aes-256-gcm.</mark></p>
+          <p>it’s 100% open source under the mit license. download the dmg or build it yourself in seconds. ✌️</p>
+        </div>
+        <footer class="fn-sign">
+          <span class="fn-who">
+            <span class="fn-avatar" aria-hidden="true">SS</span>
+            <span>salil sachdeva,<br><small>creator · mit license</small></span>
+          </span>
+          <span class="fn-hand">open drive</span>
+        </footer>
+      </article>
+    </section>
+
+    <!-- #OPEN-SOURCE: FREE OPEN SOURCE CARD + INTERACTIVE CACHE SLIDER -->
+    <section id="open-source" class="section wrap centered">
+      <h2>free forever. <em>open</em> source.</h2>
+      <p class="body">bring your own google drive &amp; desktop oauth client. zero subscriptions or relays.</p>
+
+      <div class="price-card">
+        <div class="price-top">
+          <div class="price-what">
+            <span class="price-icon-badge" aria-hidden="true">
+              <img src="assets/app-icon-512.png" alt="" width="48" height="48">
+            </span>
+            <div>
+              <p class="price-size" id="cache-tier-label">5 TB cloud</p>
+              <p class="price-sub" id="cache-sub-label">0 bytes on disk · 10 GiB hot/cold cache</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-row">
+          <div class="price-amount">
+            <span class="price-number">$0</span>
+            <span class="price-period">/forever</span>
+            <p class="price-sub">mit licensed · swift 6</p>
+          </div>
+          <div class="price-billing">
+            <span class="on">v1.0.0 release</span>
+          </div>
+        </div>
+
+        <label class="sr-only" for="cache-slider">Simulated Google Drive size</label>
+        <input id="cache-slider" class="slider" type="range" min="0" max="4" step="1" value="2">
+
+        <ul class="price-list">
+          <li>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            <span>takes 0 bytes on your mac for unpinned cloud files</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            <span>loopback nfsv3 + class 2 webdav + apple fskit &amp; file provider</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            <span>ode1 (aes-256-gcm) chunk &amp; odnames filename encryption</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            <span>global ⌃⌥f search palette, offline pinning &amp; hotspot guard</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+            <span>full source code + 26 automated swift test suites</span>
+          </li>
+        </ul>
+
+        <a class="pill pill-dark price-go" href="https://github.com/salil-sachdeva/open-drive-mac/releases/latest/download/OpenDrive.dmg">download OpenDrive.dmg →</a>
+        <a class="pill pill-light price-go-secondary" href="https://github.com/salil-sachdeva/open-drive-mac" target="_blank" rel="noopener noreferrer">view source on github ↗</a>
+      </div>
+    </section>
+
+    <!-- #FAQ -->
+    <section id="faq" class="section wrap centered">
+      <h2>questions, <em>answered</em>.</h2>
+      <div class="faq">
+        <details>
+          <summary>what is open drive?</summary>
+          <p>an open-source macos cloud drive engineered in swift 6 that mounts your google drive directly in finder favorites and terminal. files look and open like local files, but stream on demand from google drive so they take zero space on your mac.</p>
+        </details>
+        <details>
+          <summary>how does finder show my real 5 TB google drive space instead of my mac’s free space?</summary>
+          <p>apple’s file provider framework reports your startup disk’s free space in finder. open drive includes a Virtual Disk mode powered by a user-space loopback nfsv3 and webdav server over rfc 6761 *.localhost that translates google drive’s about.get storageQuota directly into statfs / FSSTAT.</p>
+        </details>
+        <details>
+          <summary>how can a large video open immediately if it isn’t on my mac?</summary>
+          <p>open drive’s RangeReader fetches only the 4 MiB byte range your app requests, coalesces duplicate in-flight reads, and prefetches sequential chunks into a bounded two-tier hot/cold lru disk cache.</p>
+        </details>
+        <details>
+          <summary>how does ode1 zero-knowledge encryption work?</summary>
+          <p>when you enable the ode1 vault on an account, open drive derives a 256-bit key encryption key via PBKDF2-HMAC-SHA256 (210,000 iterations) to wrap your account master key in .od-meta. every file gets a 72-byte ODE1 header and random-access 4 MiB + 16 B AES-256-GCM chunks, while filenames are encrypted with HKDF-SHA256 (ODNames-v1).</p>
+        </details>
+        <details>
+          <summary>what if i forget my vault passphrase?</summary>
+          <p>when you create an encrypted vault, open drive generates a 24-word recovery phrase and a printable us-letter recovery key pdf. keep it somewhere safe — either your passphrase or the 24-word recovery key can unwrap your master key.</p>
+        </details>
+        <details>
+          <summary>can i rename my mounted drive or connect multiple google accounts?</summary>
+          <p>yes. you can rename the mounted volume live (which updates both the mount path under ~/Library/OpenDrive and your finder favorites pin) and connect multiple whole-drive or dedicated open drive folder accounts simultaneously.</p>
+        </details>
+        <details>
+          <summary>does it work with terminal, git, symlinks, and executable scripts?</summary>
+          <p>yes. open drive supports posix symlinks (ln -s), persists executable permission bits (chmod +x) across restarts, and isolates finder’s noisy ._* appledouble files in memory so they never clutter your remote google drive.</p>
+        </details>
+        <details>
+          <summary>what are the system requirements?</summary>
+          <p>a mac running macos 15.4 (sequoia) or newer, and your own free google cloud desktop oauth 2.0 client id (or build from source with xcode / swift 6 command line tools).</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- #DOWNLOAD ENDING CTA -->
+    <section id="download" class="ending wrap">
+      <h2>stop deleting files<br>to make <em>space</em>.</h2>
+      <p class="body">mount terabytes of google drive in finder, today.</p>
+      <a class="pill pill-dark" href="https://github.com/salil-sachdeva/open-drive-mac/releases/latest/download/OpenDrive.dmg">
+        <svg class="apple-logo" viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
+          <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/>
+        </svg>
+        download for mac
+      </a>
+      <p class="fine">free &amp; open source · v1.0.0 universal dmg · macos 15.4+</p>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX MODAL FOR SCREENSHOTS & GIFS -->
+  <div id="media-lightbox" class="film-pop" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <div class="film-pop-box">
+      <div class="lightbox-head">
+        <span id="lightbox-title">open drive — preview</span>
+        <button type="button" id="close-lightbox-btn" class="film-close" aria-label="Close preview">✕</button>
+      </div>
+      <img id="lightbox-img" src="assets/screenshots/finder-demo-light.gif" alt="">
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <p>
+      <a href="https://github.com/salil-sachdeva/open-drive-mac" target="_blank" rel="noopener noreferrer">github</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/salil-sachdeva/open-drive-mac/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">v1.0.0 release</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/salil-sachdeva/open-drive-mac/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener noreferrer">architecture</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/salil-sachdeva/open-drive-mac/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">changelog</a>
+      <span aria-hidden="true">·</span>
+      <span>mit license</span>
+      <span aria-hidden="true">·</span>
+      <span>© 2026 open drive</span>
+    </p>
+    <p class="foot-sub">
+      built in native swift 6 by <a href="https://github.com/salil-sachdeva" target="_blank" rel="noopener noreferrer">@salil-sachdeva</a> ❤️
+    </p>
+    <div class="orbit-mark" aria-hidden="true">
+      <svg class="logo" viewBox="0 0 64 64" fill="currentColor">
+        <path d="M 24.5 8 L 39.5 8 C 42.0 8 44 10.0 44 12.5 L 44 32.5 C 44 35.0 42.0 37 39.5 37 L 24.5 37 C 22.0 37 20 35.0 20 32.5 L 20 12.5 C 20 10.0 22.0 8 24.5 8 Z" fill-opacity="0.45"/>
+        <path d="M 12 19 C 14.2 19 16 20.8 16 23 L 16 39 C 16 41.2 17.8 43 20 43 L 44 43 C 46.2 43 48 41.2 48 39 L 48 23 C 48 20.8 49.8 19 52 19 C 54.2 19 56 20.8 56 23 L 56 47.5 C 56 52.2 52.2 56 47.5 56 L 16.5 56 C 11.8 56 8 52.2 8 47.5 L 8 23 C 8 20.8 9.8 19 12 19 Z M 25.5 47 L 38.5 47 C 39.9 47 41 48.1 41 49.5 C 41 50.9 39.9 52 38.5 52 L 25.5 52 C 24.1 52 23 50.9 23 49.5 C 23 48.1 24.1 47 25.5 47 Z" fill-rule="evenodd"/>
+      </svg>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

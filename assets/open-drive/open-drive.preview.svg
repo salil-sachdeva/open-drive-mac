@@ -1,0 +1,7 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="bg" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0%" stop-color="#17191F"/><stop offset="100%" stop-color="#0B0C0F"/></linearGradient><clipPath id="appicon-clip"><rect width="1024" height="1024" rx="224"/></clipPath></defs>
+<g clip-path="url(#appicon-clip)"><rect width="1024" height="1024" fill="url(#bg)"/>
+<path d="M 428 224 L 596 224 C 626.9 224 652 249.1 652 280 L 652 508 C 652 538.9 626.9 564 596 564 L 428 564 C 397.1 564 372 538.9 372 508 L 372 280 C 372 249.1 397.1 224 428 224 Z" fill="#FFFFFF"/>
+<path d="M 268 356 C 292.3 356 312 375.7 312 400 L 312 592 C 312 618.5 333.5 640 360 640 L 664 640 C 690.5 640 712 618.5 712 592 L 712 400 C 712 375.7 731.7 356 756 356 C 780.3 356 800 375.7 800 400 L 800 696 C 800 753.4 753.4 800 696 800 L 328 800 C 270.6 800 224 753.4 224 696 L 224 400 C 224 375.7 243.7 356 268 356 Z" fill="#FFFFFF"/>
+<path d="M 432 692 L 592 692 C 607.5 692 620 704.5 620 720 C 620 735.5 607.5 748 592 748 L 432 748 C 416.5 748 404 735.5 404 720 C 404 704.5 416.5 692 432 692 Z" fill="#3B5CF6"/></g>
+</svg>

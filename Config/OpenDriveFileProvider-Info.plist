@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleDisplayName</key>
+    <string>Open Drive</string>
+    <key>CFBundleExecutable</key>
+    <string>OpenDriveFileProvider</string>
+    <key>CFBundleIdentifier</key>
+    <string>org.opendrive.mac.fileprovider</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>Open Drive</string>
+    <key>CFBundlePackageType</key>
+    <string>XPC!</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>15.4</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+    </dict>
+    <key>NSExtension</key>
+    <dict>
+        <key>NSExtensionFileProviderSupportsEnumeration</key>
+        <true/>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.fileprovider-nonui</string>
+        <key>NSExtensionPrincipalClass</key>
+        <string>OpenDriveFileProviderExtension</string>
+        <key>NSFileProviderDecorations</key>
+        <array>
+            <dict>
+                <key>Identifier</key>
+                <string>org.opendrive.mac.fileprovider.Quota</string>
+                <key>Category</key>
+                <string>FolderStatus</string>
+                <key>Label</key>
+                <dict>
+                    <key>NSStringFormat</key>
+                    <string>%@</string>
+                    <key>NSStringFormatValues</key>
+                    <array>
+                        <string>item.userInfo.quotaLabel</string>
+                    </array>
+                </dict>
+            </dict>
+        </array>
+    </dict>
+</dict>
+</plist>
